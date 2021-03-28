@@ -55,12 +55,12 @@ public class NoiseColumnSamplerMixin {
         this.noise = noise;
         this.islandNoise = islandNoise;
         this.densityNoise = densityNoise;
-        this.topSlideTarget = (double)config.getTopSlide().getTarget();
-        this.topSlideSize = (double)config.getTopSlide().getSize();
-        this.topSlideOffset = (double)config.getTopSlide().getOffset();
-        this.bottomSlideTarget = (double)config.getBottomSlide().getTarget();
-        this.bottomSlideSize = (double)config.getBottomSlide().getSize();
-        this.bottomSlideOffset = (double)config.getBottomSlide().getOffset();
+        this.topSlideTarget = (float)config.getTopSlide().getTarget();
+        this.topSlideSize = (float)config.getTopSlide().getSize();
+        this.topSlideOffset = (float)config.getTopSlide().getOffset();
+        this.bottomSlideTarget = (float)config.getBottomSlide().getTarget();
+        this.bottomSlideSize = (float)config.getBottomSlide().getSize();
+        this.bottomSlideOffset = (float)config.getBottomSlide().getOffset();
         this.densityFactor = config.getDensityFactor();
         this.densityOffset = config.getDensityOffset();
         this.noiseCaveSampler = noiseCaveSampler;
@@ -71,7 +71,7 @@ public class NoiseColumnSamplerMixin {
         double ad;
         double ai;
         if (this.islandNoise != null) {
-            ac = (double)(TheEndBiomeSource.getNoiseAt(this.islandNoise, x, z) - 8.0F);
+            ac = (float)(TheEndBiomeSource.getNoiseAt(this.islandNoise, x, z) - 8.0F);
             if (ac > 0.0D) {
                 ad = 0.25D;
             } else {
@@ -110,8 +110,8 @@ public class NoiseColumnSamplerMixin {
 
             float w = h / i;
             float y = g / i;
-            ai = (double)(w * 0.5F - 0.125F);
-            double ab = (double)(y * 0.9F + 0.1F);
+            ai = (float)(w * 0.5F - 0.125F);
+            double ab = (float)(y * 0.9F + 0.1F);
             ac = ai * 0.265625D;
             ad = 96.0D / ab;
         }
@@ -138,10 +138,10 @@ public class NoiseColumnSamplerMixin {
     }
 
     private double getOffset(int y, double depth, double scale, double randomDensityOffset) {
-        double d = 1.0D - (double)y * 2.0D / 32.0D + randomDensityOffset;
+        double d = 1.0D - (float)y * 2.0D / 32.0D + randomDensityOffset;
         double e = d * this.densityFactor + this.densityOffset;
         double f = (e + depth) * scale;
-        return f * (double)(f > 0.0D ? 4 : 1);
+        return f * (float)(f > 0.0D ? 4 : 1);
     }
 
     private double applySlides(double noise, int y) {
@@ -149,12 +149,12 @@ public class NoiseColumnSamplerMixin {
         int j = y - i;
         double e;
         if (this.topSlideSize > 0.0D) {
-            e = ((double)(this.noiseSizeY - j) - this.topSlideOffset) / this.topSlideSize;
+            e = ((float)(this.noiseSizeY - j) - this.topSlideOffset) / this.topSlideSize;
             noise = MathHelper.clampedLerp(this.topSlideTarget, noise, e);
         }
 
         if (this.bottomSlideSize > 0.0D) {
-            e = ((double)j - this.bottomSlideOffset) / this.bottomSlideSize;
+            e = ((float)j - this.bottomSlideOffset) / this.bottomSlideSize;
             noise = MathHelper.clampedLerp(this.bottomSlideTarget, noise, e);
         }
 
@@ -162,7 +162,7 @@ public class NoiseColumnSamplerMixin {
     }
 
     private double getDensityNoise(int x, int z) {
-        double d = this.densityNoise.sample((double)(x * 200), 10.0D, (double)(z * 200), 1.0D, 0.0D, true);
+        double d = this.densityNoise.sample((float)(x * 200), 10.0D, (float)(z * 200), 1.0D, 0.0D, true);
         double f;
         if (d < 0.0D) {
             f = -d * 0.3D;
