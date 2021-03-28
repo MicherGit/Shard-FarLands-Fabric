@@ -95,7 +95,9 @@ public class PerlinNoiseSamplerMixin {
     private int getGradient(int hash) {
         return this.permutations[hash & 255] & 255;
     }
+
+    @Shadow
     private static double grad(int hash, double x, double y, double z) {
-        return SimplexNoiseSamplerMixin.dot(SimplexNoiseSamplerMixin.GRADIENTS[hash & 15], x, y, z);
+        return grad(hash,x,y,z);
     }
 }

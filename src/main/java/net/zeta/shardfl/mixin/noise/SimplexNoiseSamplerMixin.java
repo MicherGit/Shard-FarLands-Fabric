@@ -40,7 +40,9 @@ public class SimplexNoiseSamplerMixin {
     private int getGradient(int hash) {
         return this.permutations[hash & 255];
     }
-
+    /**
+     * @author
+     */
     @Overwrite
     protected static double dot(int[] gArr, double x, double y, double z) {
         return (float)gArr[0] * x + (float)gArr[1] * y + (float)gArr[2] * z;
