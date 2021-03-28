@@ -7,7 +7,17 @@
   ],
   "client": [
     "InitialMixin",
-    "farlands.OctavePerlinNoiseSamplerMixin"
+    "noise.farlands.OctavePerlinNoiseSamplerMixin",
+    "noise.SimplexNoiseSamplerMixin",
+    "noise.PerlinNoiseSamplerMixin",
+    "noise.DoublePerlinNoiseSamplerMixin",
+    "noise.InterpolatedNoiseSamplerMixin",
+    "AquafierSamplerMixin",
+    "NoiseCaveSamplerMixin",
+    "NoiseColumnSamplerMixin",
+    "SimpleRandomMixin",
+    "StructureWeightSamplerMixin",
+    "noise.OctaveSimplexNoiseSamplerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
