@@ -6,7 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "ExampleMixin"
+    "ExampleMixin",
+    "farlands.OctavePerlinNoiseSamplerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
